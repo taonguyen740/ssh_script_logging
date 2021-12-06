@@ -14,7 +14,7 @@ LOGFILE=\`whoami\`_\`date '+%Y%m%d%H%M%S'\`.log
 
 P_PROC=\`ps -ef|grep \$PPID|grep bash|awk '{print \$8}'\`
 
-if [ "\$P_PROC" = -bash ];then
+if [ "\`whoami\`" != "root" ] && [ "\$P_PROC" = -bash ];then
   #/bin/script -faq \${LOGFILE}
   # タイムスタンプを追加
   /bin/script -faq >(awk '{print strftime("%Y-%m-%d %H:%M:%S "), \$0} {fflush() }'>> \${LOGDIR}/\${LOGFILE})
